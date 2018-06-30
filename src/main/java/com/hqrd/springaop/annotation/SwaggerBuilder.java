@@ -16,7 +16,7 @@ import java.util.Set;
 /**
  * Overrides swagger annotations with our custom annotations
  *
- * @author Julien Pruvost
+ * @author hqrd
  */
 @Component
 @Order(SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER)

@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@Api(value = "onlinestore", description = "Operations pertaining to Online Store")
+@Api(description = "Operations pertaining to employees")
 @RequestMapping(value = "/employee", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EmployeeController {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -35,19 +35,17 @@ public class EmployeeController {
             endpoint = {"list"}, httpMethod = RequestMethod.GET, apiName = "View a list of employees",
             params = {"onlyOne", "test"},
             apiDoc = "Returns a list of all employees.",
-            apiResponses = {@ApiResponse(code = 200, message = "Successfully retrieved list"),
-                    @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-                    @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-                    @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
+            apiResponses = {@ApiResponse(code = 417, message = "Exception raised by AOP code")}
+    )
     public List<EmployeeVO> getAllEmployees(@ApiParam(value = "Set as 'true' to only return one random employee", required = true) @RequestParam("onlyOne") String onlyOne,
-                                            @ApiParam(value = "Test pour aspect", required = true) @RequestParam("test") String test) {
+                                            @ApiParam(value = "AOP test variable, set as 'bug' for exception", required = true) @RequestParam("test") String test) {
         List<EmployeeVO> list = manager.getAllEmployees();
         if (onlyOne.equals("true")) {
             Collections.shuffle(list);
             list = Collections.singletonList(list.get(0));
         }
-        LOGGER.debug((onlyOne.equals("true") ? "Only one " : "") + "getAllEmployees returned : " + list);
         if (test.equals("bug")) return null;
+        LOGGER.debug((onlyOne.equals("true") ? "Only one " : "") + "getAllEmployees returned : " + list);
         return list;
     }
 }

@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * @author Julien Pruvost
+ * @author hqrd
  */
 @Aspect
 @Component

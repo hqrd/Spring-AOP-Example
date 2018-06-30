@@ -16,7 +16,7 @@ Or go to <a>http://localhost:8080/swagger-ui.html</a> for the swagger ui interfa
 ---
 
 ## Custom annotation
-The **`@CustomController`** annotation is defined in package com.julien.springtests.annotation;
+The **`@CustomController`** annotation is defined in package com.hqrd.springaop.annotation;
 
 It uses the `@AliasFor` annotation to use multiple annotations at once and simplify the duplication of controller methods without forgetting an annotation.
 
